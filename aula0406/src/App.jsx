@@ -3,16 +3,27 @@ import { Checkbox } from "./Form/Checkbox";
 import { Input } from "./Form/Input";
 import { Radio } from "./Form/Radio";
 import { Select } from "./Form/Select";
+import useForm from "./Hooks/useForm";
 
 function App() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
   const [produto, setProduto] = useState("");
   const [cor, setCor] = useState("Azul");
   const [linguagens, setLinguagens] = useState([]);
 
+  const cep = useForm("cep");
+  const email = useForm("email");
+  const nome = useForm();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (cep.validate()) {
+      console.log("Enviou");
+    } else {
+      console.log("Não enviou");
+    }
+  }
   return (
-    <form action="">
+    <form onSubmit={handleSubmit}>
       {/* <h2>Checkbox</h2>
       <Checkbox
         options={["Javascript", "PHP", "Ruby"]}
@@ -28,8 +39,27 @@ function App() {
         setValue={setProduto}
       /> */}
 
+      <Input
+        label="CEP"
+        id="cep"
+        type="text"
+        {...cep}
+        placeholder="00000-000"
+      />
+      <Input
+        label="Email"
+        id="email"
+        type="email"
+        {...email}
+      />
+       <Input
+        label="nome"
+        id="nome"
+        type="text"
+        {...nome}
+      />
 
-      
+      <button>Enviar</button>
     </form>
   );
 }

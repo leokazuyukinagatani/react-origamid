@@ -1,14 +1,27 @@
-export function Input({ id, label, setValue, ...rest }) {
+export function Input({
+  id,
+  label,
+  onChange,
+  value,
+  type,
+  onBlur,
+  placeholder,
+  error,
+}) {
   return (
-    <label htmlFor={id}>
-      {label}
+    <>
+      <label htmlFor={id}> {label}</label>
+
       <input
-        type="text"
+        type={type}
         id={id}
         name={id}
-        onChange={({ target }) => setValue(target.value)}
-        {...rest}
+        onChange={onChange}
+        placeholder={placeholder}
+        onBlur={onBlur}
+        value={value}
       />
-    </label>
+      {error && <p>{error}</p>}
+    </>
   );
 }
