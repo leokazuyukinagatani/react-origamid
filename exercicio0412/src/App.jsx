@@ -44,14 +44,47 @@ function App() {
     p4: "",
   });
 
-  console.log(respostas);
-  return (
-    <form action="">
-      {perguntas.map((pergunta) => (
-        <Radio key={pergunta.id} {...pergunta} />
-      ))}
+  const [slide, setSlide] = useState(0);
 
-      <button>Próxima</button>
+  const [resultado, setResultado] = useState(null);
+
+  console.log(respostas);
+  function handleChange({ target }) {
+    setRespostas({ ...respostas, [target.id]: target.value });
+  }
+
+  function resultadoFinal() {
+    const corretas = perguntas.filter(
+      ({ id, resposta }) => respostas[id] === resposta
+    );
+    setResultado(`Você acertou: ${corretas.length} de ${perguntas.length}`);
+    console.log(corretas);
+  }
+
+  function handleClick() {
+    if (slide < perguntas.length - 1) {
+      setSlide((slide) => slide + 1);
+    } else {
+      setSlide(slide+1)
+      resultadoFinal();
+    }
+  }
+  return (
+    <form onSubmit={(event) => event.preventDefault()}>
+      {perguntas.map((pergunta, index) => (
+        <Radio
+          active={slide === index}
+          key={pergunta.id}
+          value={respostas[pergunta.id]}
+          onChange={handleChange}
+          {...pergunta}
+        />
+      ))}
+      {resultado ? (
+        <p>{resultado}</p>
+      ) : (
+        <button onClick={handleClick}>Próxima</button>
+      )}
     </form>
   );
 }
