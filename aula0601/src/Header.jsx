@@ -2,7 +2,7 @@ import { useEffect} from 'react'
 import { NavLink, useLocation } from "react-router-dom";
 
 export function Header() {
-  const location = useLocation ()
+  const location = useLocation()
 
   useEffect(() => {
     console.log('mudou a rota')
