@@ -1,9 +1,9 @@
-import styles from "Foooter.module.css";
+import styles from "./Footer.module.css";
 
 export function Footer() {
   return (
-    <div>
-      <h1>Footer</h1>
+    <div className={styles.footer}>
+      <p>Alguns direitos reservados.</p>
     </div>
   );
 }
