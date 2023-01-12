@@ -3,6 +3,7 @@ import './App.css'
 import { UserPost } from './api/endpoints/UserPost'
 import { TokenPost } from './api/endpoints/TokenPost'
 import { PhotoPost } from './api/endpoints/PhotoPost'
+import { PhotoGet } from './api/endpoints/PhotoGet'
 
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
       <TokenPost />
       <h2>Photo Post</h2>
       <PhotoPost />
+      <h2>Photo Get</h2>
+      <PhotoGet />
+
     </div>
   )
 }
